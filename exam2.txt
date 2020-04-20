@@ -1,0 +1,54 @@
+1. mips registers typically have a register and a number because they different letters on the registers correspond to how they are used and the numbers represent how many of them exist for that particular function.
+
+2. The a registers are used to pass functions to a subroutine
+
+3. The s registers are saved on the stack
+
+4. 
+	a. add adds two registers together while addi adds an immediate value or constant to the register.
+	b. a pseudo instruction in mips is an instruction is an instruction that is really more than one instructions similar to using a library in c 
+	c. an assembly directive tells the assembler how to interpret the following data. for example the .text assembly directive lets the program know that its a program, while the .asciiz lets the assembler know that an ascii string is coming up.
+
+5.
+
+.text
+.globl main
+main:
+	li $s0,1
+	li $s1, 1
+	bne $s1, $s0, ELSE
+	li $s3, 1
+ELSE:	add $s2, $s0, $s1
+
+6.
+
+.text
+.globl main
+main:
+	li $s1,1
+	li $s2, 5
+	bgt $s2, $s1, IFG
+IFG:	li $s1, 0xF
+
+7.
+.data
+	prompt .asciiz "DONE WITH MIPS!"
+.text
+bar: 
+	la $t0, $s0
+	andi $t0, 2
+	bneq $t0, 10, NEQ
+	addi $t0, 10
+NEQ:	li $t1, 0
+	la $s0, $t0
+
+main:
+	li $s0, 8
+	jal bar
+	li $v0, 4
+	la $a0, prompt
+	syscall
+
+	
+
+	
